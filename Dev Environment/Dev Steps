@@ -14,5 +14,6 @@
 * add the model
 * register the app in the settings.py
 * run makemigration and migrate
-* register the model in admin
+* register the model in admin and check in the admin and add a sample product
+* add the class based view - add a class and function for the view
 ---------------------------------------
