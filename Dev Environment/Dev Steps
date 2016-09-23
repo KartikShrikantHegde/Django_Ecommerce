@@ -16,4 +16,6 @@
 * run makemigration and migrate
 * register the model in admin and check in the admin and add a sample product
 * add the class based view - add a class and function for the view
+* Register the first url in urls.py in main project file and add include
+  the urls.py file in the specific app
 ---------------------------------------
