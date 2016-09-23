@@ -14,4 +14,5 @@
 * add the model
 * register the app in the settings.py
 * run makemigration and migrate
+
 ---------------------------------------
