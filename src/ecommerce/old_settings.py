@@ -57,7 +57,6 @@ INSTALLED_APPS = (
     'crispy_forms',
     'registration',
     #my apps
-    'products'
     'newsletter',
 )
 
