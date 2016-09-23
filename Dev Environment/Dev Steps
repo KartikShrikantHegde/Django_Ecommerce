@@ -12,4 +12,5 @@
 * Product road-map: make the road-map.
 * create the product app
 * add the model
+* register the app in the settings.py
 ---------------------------------------
