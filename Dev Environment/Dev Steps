@@ -1,0 +1,19 @@
+* Clone the newsletter project
+* Rename it
+* Create virtual env
+* Install the requirements.txt file from previous project as pip install -r requirements.txt
+   upgrade any errors while doing this. Once upgraded, update the requirements.txt file using
+   pip freeze > requirements.txt
+* remove the previous databases.
+* run all the commands from migrate to createsuperuser
+* rename all the previous files to ecommerce in sublime and save them
+
+* Product road-map: make the road-map.
+
+* create the product app
+* add the model
+* register the app in the settings.py
+* run makemigration and migrate
+* register the model in admin
+* add the class based view.
+---------------------------------------
