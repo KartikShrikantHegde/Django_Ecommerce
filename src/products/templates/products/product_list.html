@@ -2,10 +2,19 @@
 
 {% block content %}
 
-{{ object_list }}
+    <table class="table table-responsive">
 
-    {{ now }}
+{% for object in object_list %}
+<tr>
+<td>{{ object.title }}</td>
 
-    {{ user }}
+</tr>
+
+    {% endfor %}
+</table>
+
+{#    {{ now }}#}
+{##}
+{#    {{ user }}#}
 
 {% endblock %}

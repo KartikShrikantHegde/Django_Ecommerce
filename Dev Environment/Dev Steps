@@ -27,5 +27,7 @@
   for rendering. The context is built into it like object_list. you can override and write own function.
   and add few more parameters into built in dictionary context.
 
+  even the template -> product_list is built into it
+
 
 ---------------------------------------
