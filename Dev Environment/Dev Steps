@@ -23,5 +23,10 @@
   curly braces "{% url 'about' %}". So this allows us to make sure even if the url name
   changes referencing the url is constant using the name variable.
 
+* Add a list based view class and corresponding url for it. Also a product_list template
+  for rendering. The context is built into it. you can override and write own function.
+
+
+
 
 ---------------------------------------
