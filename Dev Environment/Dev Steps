@@ -24,9 +24,8 @@
   changes referencing the url is constant using the name variable.
 
 * Add a list based view class and corresponding url for it. Also a product_list template
-  for rendering. The context is built into it. you can override and write own function.
-
-
+  for rendering. The context is built into it like object_list. you can override and write own function.
+  and add few more parameters into built in dictionary context.
 
 
 ---------------------------------------
