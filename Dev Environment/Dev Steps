@@ -17,7 +17,7 @@
 * register the model in admin and check in the admin and add a sample product
 * add the class based view - add a class and function for the view
 * Register the first url in urls.py in main project file and add include
-  the urls.py file in the specific app
+  the urls.py file in the specific app inside a new folder templates in products app
 
   Note: The name in the url can be used inside anywhere in the view or templates with
   curly braces "{% url 'about' %}". So this allows us to make sure even if the url name
