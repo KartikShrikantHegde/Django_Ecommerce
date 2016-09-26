@@ -34,4 +34,7 @@
 * add the queryset and model managers concept to handle the model and associate the queryset
   with the model
 
+* Adding product variations like 32bit or 64bit in model itself.
+  Add into admin and do migrations as well
+
 ---------------------------------------
