@@ -29,5 +29,9 @@
 
   even the template -> product_list is built into it
 
+* Add the get_absolute_url concept using url names
+
+* add the queryset and model managers concept to handle the model and associate the queryset
+  with the model
 
 ---------------------------------------
