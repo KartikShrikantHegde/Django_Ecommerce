@@ -1,7 +1,10 @@
 {%  extends "base.html" %}
 
 {% block content %}
-
-{{ object.title }}
-
+    {{ object.title }}
+<select class="form-control">
+    {% for variations_obj in object.variations_set.all %}
+    <option value="{{ variations_obj.id }}"> {{ variations_obj }}</option>
+    {% endfor %}
+</select>
 {% endblock %}
