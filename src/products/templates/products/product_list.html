@@ -6,7 +6,7 @@
 
 {% for object in object_list %}
 <tr>
-<td>{{ object.title }}</td>
+<td><a href="{% url 'product_detail' pk=object.pk %}"> {{ object.title }}</a></td>
 
 </tr>
 
