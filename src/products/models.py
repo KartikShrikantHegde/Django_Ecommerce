@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 # Create your models here.
@@ -13,4 +14,4 @@ class Product(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/products/%s" % (self.pk)
+        return reverse("product_detail", kwargs={"pk":self.pk})
