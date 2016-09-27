@@ -39,4 +39,6 @@
   Add few variations.
   Display those variations using the a dropdown
 
+* Using post_save to check the details saved on admin for products
+
 ---------------------------------------

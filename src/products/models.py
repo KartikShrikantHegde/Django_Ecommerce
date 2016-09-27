@@ -1,3 +1,4 @@
+from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -53,3 +54,12 @@ class Variations(models.Model):
 
     def get_absolute_url(self):
         return self.product.get_absolute_url()
+
+
+def product_post_saved_reciever(sender,instance,created,*args,**kwargs):
+    print sender
+    print instance
+    print created
+
+
+post_save.connect(product_post_saved_reciever,sender=Product)
