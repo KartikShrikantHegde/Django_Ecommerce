@@ -40,5 +40,5 @@
   Display those variations using the a dropdown
 
 * Using post_save to check the details saved on admin for products
-
+    and  create a default variation everytime a product is saved or created
 ---------------------------------------

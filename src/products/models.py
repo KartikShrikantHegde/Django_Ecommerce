@@ -39,9 +39,9 @@ class Variations(models.Model):
     product = models.ForeignKey(Product)
     title = models.CharField(max_length=120)
     price = models.DecimalField(decimal_places=2, max_digits=20)
-    sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True,blank=True)
+    sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
     active = models.BooleanField(default=True)
-    inventory = models.IntegerField(default="-1") # -ve 1 refers to unlimited amount
+    inventory = models.IntegerField(default="-1")  # -ve 1 refers to unlimited amount
 
     def __unicode__(self):
         return self.title
@@ -55,11 +55,21 @@ class Variations(models.Model):
     def get_absolute_url(self):
         return self.product.get_absolute_url()
 
-
-def product_post_saved_reciever(sender,instance,created,*args,**kwargs):
-    print sender
-    print instance
-    print created
+        # sender here is model class, instance belongs to particular product,created tells if its creaed new
+        # or is it updated
 
 
-post_save.connect(product_post_saved_reciever,sender=Product)
+# This creates a default variation everytime a product is saved or created
+
+def product_post_saved_receiver(sender, instance, created, *args, **kwargs):
+    product = instance
+    variations = product.variations_set.all()
+    if variations.count() == 0:
+        new_var = Variations()
+        new_var.product = product
+        new_var.title = "Default"
+        new_var.price = product.price
+        new_var.save()
+
+
+post_save.connect(product_post_saved_receiver, sender=Product)
