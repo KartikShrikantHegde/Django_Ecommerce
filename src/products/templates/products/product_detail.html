@@ -2,9 +2,17 @@
 
 {% block content %}
     {{ object.title }}
+
+{#    if there  are more than one variation to our product#}
+    {% if object.variations_set.count > 1 %}
 <select class="form-control">
     {% for variations_obj in object.variations_set.all %}
     <option value="{{ variations_obj.id }}"> {{ variations_obj }}</option>
     {% endfor %}
 </select>
+
+    {% endif %}
+    <br>
+    <a href="#">Add to Cart</a>
+
 {% endblock %}
