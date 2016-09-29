@@ -7,6 +7,8 @@
     {{ object.title }}
 </div>
 {#    if there  are more than one variation to our product#}
+
+<div class="col-sm-4">
     {% if object.variations_set.count > 1 %}
 <select class="form-control">
     {% for variations_obj in object.variations_set.all %}
@@ -17,5 +19,6 @@
     {% endif %}
     <br>
     <a href="#">Add to Cart</a>
+</div>
 </div>
 {% endblock %}
