@@ -1,8 +1,11 @@
 {%  extends "base.html" %}
 
 {% block content %}
-    {{ object.title }}
+<div class="row">
+<div class="col-sm-8">
 
+    {{ object.title }}
+</div>
 {#    if there  are more than one variation to our product#}
     {% if object.variations_set.count > 1 %}
 <select class="form-control">
@@ -14,5 +17,5 @@
     {% endif %}
     <br>
     <a href="#">Add to Cart</a>
-
+</div>
 {% endblock %}
