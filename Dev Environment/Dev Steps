@@ -50,5 +50,5 @@
    install pillow and after adding the class do db migrations.
 
    display the image after writing path functions in models.py
-
+   add slug to make sure images are dynamic in nature.
 ---------------------------------------
