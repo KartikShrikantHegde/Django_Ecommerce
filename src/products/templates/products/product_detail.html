@@ -9,6 +9,8 @@
 </div>
 {#    if there  are more than one variation to our product#}
 
+{#Product Sidebar#}
+
 <div class="col-sm-4">
 <h3>{{ object.price }}</h3>
     {% if object.variations_set.count > 1 %}
@@ -21,6 +23,9 @@
     {% endif %}
     <br>
     <a href="#">Add to Cart</a>
+</br>
+</hr>
+<h4>Related Products</h4>
 </div>
 </div>
 {% endblock %}
