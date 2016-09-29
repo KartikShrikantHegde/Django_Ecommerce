@@ -41,4 +41,14 @@
 
 * Using post_save to check the details saved on admin for products
     and  create a default variation everytime a product is saved or created
+
+* Add some div classes and customizations to product detail page
+
+* Add a class image for products which referes to main model product using python image library - pillow
+   pillow helps to know the uploaded image is actually a image by checking the extension.
+
+   install pillow and after adding the class do db migrations.
+
+   display the image after writing path functions in models.py
+
 ---------------------------------------
