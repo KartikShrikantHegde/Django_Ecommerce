@@ -4,11 +4,13 @@
 <div class="row">
 <div class="col-sm-8">
 
-    {{ object.title }}
+    <h2>{{ object.title }}</h2>
+    <p class="lead">object.description</p>
 </div>
 {#    if there  are more than one variation to our product#}
 
 <div class="col-sm-4">
+<h3>{{ object.price }}</h3>
     {% if object.variations_set.count > 1 %}
 <select class="form-control">
     {% for variations_obj in object.variations_set.all %}
