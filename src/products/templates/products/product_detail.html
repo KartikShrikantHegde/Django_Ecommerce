@@ -5,9 +5,20 @@
 <div class="col-sm-8">
 
     <h2>{{ object.title }}</h2>
-    <p class="lead">object.description</p>
+
+    {% if object.productimage_set.all > 0 %}
+    <div>
+{% for img in object.productimage_set.all  %}
+    <img class="img-responsive" src="{{ img.image.url }}" />
+    {% endfor %}
+    </div>
+    {% endif %}
+    <p class="lead">{{ object.description }}</p>
 </div>
 {#    if there  are more than one variation to our product#}
+
+
+
 
 {#Product Sidebar#}
 
