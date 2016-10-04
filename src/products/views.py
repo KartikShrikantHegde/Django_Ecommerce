@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -13,10 +14,33 @@ class ProductListView(ListView):
     model = Product
     queryset = Product.objects.all()
 
-    def get_context_data(self, *args,**kwargs):
-        context = super(ProductListView, self).get_context_data(*args,**kwargs)
+    # This is the default method overriding in Django Productlistview
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductListView, self).get_context_data(*args, **kwargs)
         context["now"] = timezone.now()
+        context["query"] = self.request.GET.get("q")
         return context
+
+    # Search functionality for multiple items
+
+    def get_queryset(self,*args,**kwargs):
+        qs = super(ProductListView, self).get_queryset(*args,**kwargs)
+        query = self.request.GET.get("q")
+        if query:
+            qs = self.model.objects.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query)
+            )
+            try:
+                qs2 = self.model.objects.filter(
+                    Q(price=query)
+                )
+                qs = (qs | qs2).distinct()
+            except:
+                pass
+        return qs
+
 
 class ProductDetailView(DetailView):
     model = Product
