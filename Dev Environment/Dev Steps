@@ -55,4 +55,6 @@
 * Add searching functionality using the get queryset and Q lookup.
 
 * Adding the list view for variations for a product and update variations info using the formset
+
+* Giving permissions for staff or normal user to view and update the product variations and inventory
 ------------------------------------------------------------------
