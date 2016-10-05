@@ -7,7 +7,29 @@ from django.utils import timezone
 
 # Create your views here.
 
-from .models import Product
+from .models import Product,Variations
+
+class VariationListView(ListView):
+    model = Variations
+    queryset = Variations.objects.all()
+
+    # This is the default method overriding in Django Productlistview
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(VariationListView, self).get_context_data(*args, **kwargs)
+    #     context["now"] = timezone.now()
+    #     context["query"] = self.request.GET.get("q")
+    #     return context
+
+    # Search functionality for multiple items
+
+    def get_queryset(self,*args,**kwargs):
+        product_pk = self.kwargs.get("pk")
+        if product_pk:
+            product = get_object_or_404(Product,pk=product_pk)
+            queryset = Variations.objects.filter(product=product)
+        print self.kwargs
+        return queryset
 
 
 class ProductListView(ListView):
