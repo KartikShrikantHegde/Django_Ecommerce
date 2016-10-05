@@ -53,4 +53,6 @@
    add slug to make sure images are dynamic in nature.
 
 * Add searching functionality using the get queryset and Q lookup.
+
+* Adding the list view for variations for a product and update variations info using the formset
 ------------------------------------------------------------------
