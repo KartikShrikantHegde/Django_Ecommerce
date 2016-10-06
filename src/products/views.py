@@ -10,12 +10,12 @@ from django.utils import timezone
 
 from .forms import VariationInventoryFormSet
 from .mixins import StaffRequiredMixin, LoginRequiredMixin
-from .models import Product,Variations
+from .models import Product, Variations
 
 
 # Provides a view list
 
-class VariationListView(StaffRequiredMixin,ListView):
+class VariationListView(StaffRequiredMixin, ListView):
     model = Variations
     queryset = Variations.objects.all()
 
@@ -26,29 +26,30 @@ class VariationListView(StaffRequiredMixin,ListView):
         context["formset"] = VariationInventoryFormSet(queryset=self.get_queryset())
         return context
 
-
-    def get_queryset(self,*args,**kwargs):
+    def get_queryset(self, *args, **kwargs):
         product_pk = self.kwargs.get("pk")
         if product_pk:
-            product = get_object_or_404(Product,pk=product_pk)
+            product = get_object_or_404(Product, pk=product_pk)
             queryset = Variations.objects.filter(product=product)
-        print self.kwargs
         return queryset
 
-    def post(self, request,*args,**kwargs):
-        formset = VariationInventoryFormSet(request.POST,request.FILES)
-        print request.POST
+    def post(self, request, *args, **kwargs):
+        formset = VariationInventoryFormSet(request.POST, request.FILES)
         if formset.is_valid():
             formset.save(commit=False)
             for form in formset:
                 new_item = form.save(commit=False)
+                # if new_item.title:
                 product_pk = self.kwargs.get("pk")
                 product = get_object_or_404(Product, pk=product_pk)
                 new_item.product = product
                 new_item.save()
-            messages.success(request,"Your Inventory has been updated successfully")
+
+            messages.success(request, "Your inventory and pricing has been updated.")
             return redirect("products")
         raise Http404
+
+
 
 
 class ProductListView(ListView):
@@ -65,8 +66,8 @@ class ProductListView(ListView):
 
     # Search functionality for multiple items
 
-    def get_queryset(self,*args,**kwargs):
-        qs = super(ProductListView, self).get_queryset(*args,**kwargs)
+    def get_queryset(self, *args, **kwargs):
+        qs = super(ProductListView, self).get_queryset(*args, **kwargs)
         query = self.request.GET.get("q")
         if query:
             qs = self.model.objects.filter(

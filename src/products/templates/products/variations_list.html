@@ -18,7 +18,7 @@
 {##}
 {#    {{ user }}#}
 
-    <form method="post" action="">{% csrf_token %}
+    <form method="POST" action="">{% csrf_token %}
     {{ formset.management_form }}
 
         {% for form in formset %}

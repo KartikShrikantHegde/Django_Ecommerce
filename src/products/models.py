@@ -76,12 +76,13 @@ def product_post_saved_receiver(sender, instance, created, *args, **kwargs):
 post_save.connect(product_post_saved_receiver, sender=Product)
 
 
-def image_upload_to(instance,filename):
+def image_upload_to(instance, filename):
     title = instance.product.title
     slug = slugify(title)
-    basename,file_extension = filename.split(".")
-    new_filename = "%s-%s.%s"%(slug,instance.id,file_extension)
-    return "products/%s/%s" %(slug,new_filename)
+    basename, file_extension = filename.split(".")
+    new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
+    return "products/%s/%s" % (slug, new_filename)
+
 
 # Adding class to upload the images
 
