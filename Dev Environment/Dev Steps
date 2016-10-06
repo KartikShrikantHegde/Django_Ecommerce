@@ -63,4 +63,5 @@
 * Add the Social sharing link for the products in product detail using font awesome library
 
 * Add Jquery function to be used in product detail for matching the price with each variation
-------------------------------------------------------------------
+  compare the sales price vs original price and style it
+-------------------------------------------------------------------------------------------------------
