@@ -61,4 +61,6 @@
 * Add the success message on updating the product
 
 * Add the Social sharing link for the products in product detail using font awesome library
+
+* Add Jquery function to be used in product detail for matching the price with each variation
 ------------------------------------------------------------------
