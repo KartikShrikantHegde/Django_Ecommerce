@@ -59,4 +59,6 @@
 * Giving permissions for staff or normal user to view and update the product variations and inventory
 
 * Add the success message on updating the product
+
+* Add the Social sharing link for the products in product detail using font awesome library
 ------------------------------------------------------------------
