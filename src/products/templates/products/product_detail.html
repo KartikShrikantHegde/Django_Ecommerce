@@ -13,7 +13,7 @@
 
                 var sale_price = $(".variation_select option:selected").attr("data-sale-price")
                 if (sale_price != "" || sale_price != "None" || sale_price != null){
-                    $("#price").html("<h3>"+ sale_price+" <small style='color:red;text-decoration:line-th'> "+price+"</small></h3>");
+                    $("#price").html("<h3>"+ sale_price+" <small style='color:red;text-decoration:line-through'> "+price+"</small></h3>");
                 }
                 else
                 {
