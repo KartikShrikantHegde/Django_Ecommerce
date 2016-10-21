@@ -64,6 +64,5 @@
 
 * Add Jquery function to be used in product detail for matching the price with each variation
   compare the sales price vs original price and style it
--------------------------------------------------------------------------------------------------------
 
-Adding next module:
+* Adding products to different categories
