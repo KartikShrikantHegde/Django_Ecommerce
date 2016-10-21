@@ -67,4 +67,8 @@
 
 * Adding products to different categories
 
-* Add the category detail view
+* Add the category detail view - note: all the related subitems can be obtained through
+                                 using get_context_data in views using super
+
+
+* Adding the related products and ordering them by diff rules
