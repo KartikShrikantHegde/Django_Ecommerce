@@ -111,7 +111,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self,*args, **kwargs):
         context = super(ProductDetailView, self).get_context_data(*args,**kwargs)
         instance = self.get_object()
-        context["related"] = Product.objects.get_related(instance).order_by("?")[:6]    # list only 6 related products
+        context["related"] = Product.objects.get_related(instance)[:6]    # list only 6 related products
         return context
 
 def product_detail_view_func(request, id):
