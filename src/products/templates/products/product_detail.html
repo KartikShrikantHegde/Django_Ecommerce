@@ -45,11 +45,12 @@
     {% if object.get_image_url %}
     <div>
 
-    <img class="img-responsive" src="{{ object.get_image_url }}" />
+    <img id="img" class="img-responsive" src="{{ object.get_image_url }}" />
 {#    <img id="img" class="img-responsive" src="{{ img.image.url }}" />#}
 
     </div>
     {% endif %}
+
     <p class="lead">{{ object.description }}</p>
 </div>
 {#    if there  are more than one variation to our product#}

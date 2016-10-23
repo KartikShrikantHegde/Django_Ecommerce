@@ -71,4 +71,8 @@
                                  using get_context_data in views using super
 
 
-* Adding the related products and ordering them by diff rules
+* Adding the related products and ordering them by diff rules through sorted,orderby or distinct
+
+* Adding images to related products
+
+* Cleanup UI
