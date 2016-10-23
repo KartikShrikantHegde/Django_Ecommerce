@@ -42,12 +42,12 @@
 
     <h2>{{ object.title }}</h2>
 
-    {% if object.productimage_set.all > 0 %}
+    {% if object.get_image_url %}
     <div>
-{% for img in object.productimage_set.all  %}
-    <img class="img-responsive" src="{{ img.image.url }}" />
+
+    <img class="img-responsive" src="{{ object.get_image_url }}" />
 {#    <img id="img" class="img-responsive" src="{{ img.image.url }}" />#}
-    {% endfor %}
+
     </div>
     {% endif %}
     <p class="lead">{{ object.description }}</p>
@@ -95,7 +95,14 @@
 <hr>
 <h4>Related Products</h4>
 {% for product in related %}
+       {% if product.get_image_url %}
+
+    <img class="img-responsive" src="{{ product.get_image_url }}" /><br>
+{#    <img id="img" class="img-responsive" src="{{ img.image.url }}" />#}
+
+    {% else %}
 <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a><br>
+    {% endif %}
 {% endfor %}
 </div>
 </div>
