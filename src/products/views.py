@@ -23,15 +23,16 @@ class CategoryDetailView(DetailView):
     model = Category
 
     def get_context_data(self, *args, **kwargs):
-        context = super(CategoryDetailView, self).get_context_data(*args,**kwargs)
+        context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
         obj = self.get_object()
         print obj
         product_set = obj.product_set.all()
         print product_set
         default_products = obj.default_category.all()
-        products = ( product_set | default_products ).distinct()   # to avoid the duplicate when queryset are combined
+        products = (product_set | default_products).distinct()  # to avoid the duplicate when queryset are combined
         context["products"] = products
         return context
+
 
 # Provides a view list
 
@@ -70,8 +71,6 @@ class VariationListView(StaffRequiredMixin, ListView):
         raise Http404
 
 
-
-
 class ProductListView(ListView):
     model = Product
     queryset = Product.objects.all()
@@ -108,11 +107,14 @@ class ProductDetailView(DetailView):
     model = Product
 
     # override the default get contect method
-    def get_context_data(self,*args, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(*args,**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
         instance = self.get_object()
-        context["related"] = Product.objects.get_related(instance)[:6]    # list only 6 related products
+        # list only 6 related products and sorted is equal to order_by("title"),
+        # if order_by("-title") is needed then after key, add reverse =true
+        context["related"] = sorted(Product.objects.get_related(instance)[:6], key=lambda x: x.title)
         return context
+
 
 def product_detail_view_func(request, id):
     # product_instance = Product.objects.get(id=id)
