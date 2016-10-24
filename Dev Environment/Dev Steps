@@ -78,3 +78,7 @@
 * Cleanup UI - adding thumbnail as bootstrap component
 
 * Add the featured product on homepage and then update UI
+
+* Change login location
+
+* Add a custom css for shopping cart and then make sure to do collect static
