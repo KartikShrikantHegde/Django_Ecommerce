@@ -23,7 +23,7 @@ class ProductManager(models.Manager):
 
     # Show all the queryset and do some filter
 
-    def get_related(self,instance):
+    def get_related(self, instance):
         products_one = self.get_queryset().filter(categories__in=instance.categories.all())
         products_two = self.get_queryset().filter(default=instance.default)
         qs = (products_one | products_two).exclude(id=instance.id).distinct()
@@ -36,7 +36,7 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=20)
     active = models.BooleanField(default=True)
     categories = models.ManyToManyField('Category', blank=True)
-    default = models.ForeignKey('Category',related_name='default_category', null=True, blank=True)
+    default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
 
     objects = ProductManager()
 
@@ -53,7 +53,7 @@ class Product(models.Model):
         img = self.productimage_set.first()
         if img:
             return img.image.url
-        return img   # None
+        return img  # None
 
 
 class Variations(models.Model):
@@ -75,7 +75,8 @@ class Variations(models.Model):
 
     def get_html_price(self):
         if self.sale_price is not None:
-            html_text = "<span class='sale-price'>%s</span> <span class='og-price'>%s</span>"%(self.sale_price,self.price)
+            html_text = "<span class='sale-price'>%s</span> <span class='og-price'>%s</span>" % (
+            self.sale_price, self.price)
         else:
             html_text = "<span class='price'>%s</span>" % (self.price)
         return mark_safe(html_text)
@@ -134,5 +135,26 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("category_detail",kwargs={"slug":self.slug})
+        return reverse("category_detail", kwargs={"slug": self.slug})
+
+
+def image_upload_to_featured(instance, filename):
+    title = instance.product.title
+    slug = slugify(title)
+    basename, file_extension = filename.split(".")
+    new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
+    return "products/%s/featured/%s" % (slug, new_filename)
+
+
+class ProductFeatured(models.Model):
+    product = models.ForeignKey(Product)
+    image = models.ImageField(upload_to=image_upload_to_featured)
+    title = models.CharField(max_length=120,null=True,blank=True)
+    text = models.CharField(max_length=220,null=True,blank=True)
+    text_right = models.BooleanField(default=False)
+    show_price = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.product.title
 
