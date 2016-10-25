@@ -7,7 +7,7 @@ from .models import Product, Variations, ProductImage, Category, ProductFeatured
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    extra = 0  # Just one inline field not more
+    extra = 0           # Just one inline field not more
     max_num = 10
 
 
