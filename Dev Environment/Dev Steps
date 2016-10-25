@@ -83,4 +83,8 @@
 
 * Add a custom css for shopping cart and then make sure to do collect static
 
-* Adding featured and recommonded products to home page
+* Adding featured and recommended products to home page
+
+* Adding variations, images for a product as inline so that it comes along with products page in admin
+
+* Starting Cart app
