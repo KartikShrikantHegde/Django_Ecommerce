@@ -11,6 +11,7 @@ from carts.models import Cart, CartItem
 
 class CartView(SingleObjectMixin, View):
     model = Cart
+    template_name = "carts/view.html"
 
     def get_object(self,*args, **kwargs):
         # Expire the session after 5 mins - put 300
@@ -20,8 +21,8 @@ class CartView(SingleObjectMixin, View):
         if cart_id is None:
             cart = Cart()
             cart.save()
-            cart_new_id = cart.id
-            self.request.session["cart_id"] = cart_new_id
+            cart_id = cart.id
+            self.request.session["cart_id"] = cart_id
 
         cart = Cart.objects.get(id=cart_id)
         if self.request.user.is_authenticated():
@@ -30,20 +31,7 @@ class CartView(SingleObjectMixin, View):
         return cart
 
     def get(self, request, *args, **kwargs):
-        # Expire the session after 5 mins - put 300
-        # To expire once the browser is closed use 0
-        request.session.set_expiry(0)
-        cart_id = request.session.get("cart_id")
-        if cart_id is None:
-            cart = Cart()
-            cart.save()
-            cart_new_id = cart.id
-            request.session["cart_id"] = cart_new_id
-
-        cart = Cart.objects.get(id=cart_id)
-        if request.user.is_authenticated():
-            cart.user = request.user
-            cart.save()
+        cart = self.get_object()
         item_id = request.GET.get("item")
         delete_item = request.GET.get("delete")
         if item_id:
@@ -55,4 +43,8 @@ class CartView(SingleObjectMixin, View):
             else:
                 cart_item.quantity = qty
                 cart_item.save()
-        return HttpResponseRedirect("/")
+        context = {
+            "object":self.get_object()
+        }
+        template = self.template_name
+        return render(request,template,context)
