@@ -61,12 +61,13 @@
 {#Product Sidebar#}
 
 <div class="col-sm-4">
-
+   <form method="get" action="{% url 'cart' %}">
     {% if object.variations_set.count > 1 %}
     <h3 id="price">{{ object.variation_set.first.price }}</h3>
+
             <select class="form-control variation_select">
                 {% for variations_obj in object.variations_set.all %}
-                <option data-sale-price="{{ variations_obj.sale_price }}" data-price="{{ variations_obj.price }}" value="{{ variations_obj.id }}"> {{ variations_obj }}
+                <option name='item' data-sale-price="{{ variations_obj.sale_price }}" data-price="{{ variations_obj.price }}" value="{{ variations_obj.id }}"> {{ variations_obj }}
                 </option>
 {#                      <option data-img="http://images.nationalgeographic.com/wpf/media-live/photos/000/942/overrides/star-beach-el-nido-philippines_94261_600x450.jpg" data-price="{{ variations_obj.price }}" value="{{ variations_obj.id }}"> {{ variations_obj }}#}
 {#                </option>#}
@@ -74,18 +75,22 @@
             </select>
 
     {% else %}
-
+        <input type="hidden" name="item" value='{{  object.variation_set.first.id}}' />
         <h3 id="price">{% if object.variation_set.first.sale_price %}
 
             {{ object.variation_set.first.sale_price }}
             <small class="og-price" >{{ object.variation_set.first.price }}</small>
-{% else %}
+            {% else %}
+
                     {{ object.variation_set.first.price }}
             {% endif %}
 </h3>
 {% endif %}
+    <br />
+   <input class="form-control" type="number" name="qty" value="1" />
     <br>
-    <a href="#">Add to Cart</a>
+    <input type="submit" value="Add to Cart" class='btn btn-default' />
+</form>
 <br/>
 <hr>
 
