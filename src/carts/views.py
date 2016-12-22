@@ -1,3 +1,5 @@
+import int as int
+
 from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 from django.http import HttpResponseRedirect, Http404
